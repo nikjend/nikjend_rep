@@ -110,8 +110,23 @@
             border-radius: 0.75rem;
             padding: 1rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            width: 25rem;
+            width: 32rem; /* Made wider */
         }
+
+        /* Shiny animation for header */
+        .shiny {
+            background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+            background-size: 200% 100%;
+            background-position: -200% 0;
+            animation: shiny-effect 3s infinite linear;
+        }
+
+        @keyframes shiny-effect {
+            to {
+                background-position: 200% 0;
+            }
+        }
+
     </style>
 </head>
 <body class="flex flex-col items-center relative min-h-screen">
@@ -132,9 +147,9 @@
     <div class="relative z-10 w-full min-h-screen flex flex-col items-center justify-between">
     
         <!-- Header and Navigation -->
-        <header class="w-full max-w-7xl flex flex-col sm:flex-row justify-between items-center py-2 sm:py-2 p-4 sticky top-0 bg-[#9B54A4] z-50 rounded-b-xl shadow-lg transition-all duration-300">
+        <header class="w-full max-w-7xl flex flex-col sm:flex-row justify-between items-center py-1 sm:py-1 p-4 sticky top-0 bg-[#9B54A4] z-50 rounded-b-xl shadow-lg transition-all duration-300 shiny">
             <!-- Site Title or Logo -->
-            <h1 class="text-2xl font-bold text-white mb-2 sm:mb-0">Nikita</h1>
+            <h1 class="text-2xl font-bold text-white mb-2 sm:mb-0">Nikita Jendovickis Portfolio Page</h1>
             <!-- Navigation links -->
             <nav class="flex space-x-4 sm:space-x-8">
                 <a href="#about" class="nav-link text-white hover:text-gray-200 transition-colors duration-300">About</a>
@@ -152,7 +167,7 @@
                 <div class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12">
                     <!-- Photo -->
                     <div class="flex-shrink-0">
-                        <img src="photo.jpg" alt="A professional headshot of Nikita" class="rounded-2xl w-48 h-48 sm:w-60 sm:h-60 object-cover border-4 border-gray-200 shadow-xl">
+                        <img src="photo1.jpg" alt="A professional headshot of Nikita" class="rounded-2xl w-48 h-48 sm:w-60 sm:h-60 object-cover border-4 border-gray-200 shadow-xl">
                     </div>
                     <!-- Bio and Intro -->
                     <div class="text-center md:text-left">
@@ -169,7 +184,7 @@
 
             <!-- Timeline Section -->
             <section id="timeline" class="w-full rounded-2xl p-6 sm:p-12 mb-20 animate-fade-in-up">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-white mb-16">My Journey</h2>
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-center text-white mb-16">My Journey</h2>
                 <div class="flex flex-col sm:flex-row items-center justify-between relative">
                     <!-- Horizontal line for timeline -->
                     <div class="absolute inset-x-0 top-1/2 h-2 bg-blue-500 shadow-lg hidden sm:block"></div>
@@ -180,7 +195,7 @@
                         <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
                             <div class="relative inline-block">
                                 <div class="timeline-circle"></div>
-                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4">
                                     <div class="timeline-card-content">
                                         <div class="font-bold text-gray-800 text-lg">August 2019 – June 2022</div>
                                         <div class="flex items-center space-x-2 mt-1">
@@ -197,7 +212,7 @@
                         <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
                             <div class="relative inline-block">
                                 <div class="timeline-circle"></div>
-                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4">
                                     <div class="timeline-card-content">
                                         <div class="font-bold text-gray-800 text-lg">July 2020 – August 2020</div>
                                         <div class="flex items-center space-x-2 mt-1">
@@ -214,7 +229,7 @@
                         <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
                             <div class="relative inline-block">
                                 <div class="timeline-circle"></div>
-                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4">
                                     <div class="timeline-card-content">
                                         <div class="font-bold text-gray-800 text-lg">June 2021 – August 2023</div>
                                         <div class="flex items-center space-x-2 mt-1">
@@ -230,7 +245,7 @@
                         <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
                             <div class="relative inline-block">
                                 <div class="timeline-circle"></div>
-                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4">
                                     <div class="timeline-card-content">
                                         <div class="font-bold text-gray-800 text-lg">June 2022 – July 2024</div>
                                         <div class="flex items-center space-x-2 mt-1">
@@ -246,7 +261,7 @@
                         <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
                             <div class="relative inline-block">
                                 <div class="timeline-circle"></div>
-                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4">
                                     <div class="timeline-card-content">
                                         <div class="font-bold text-gray-800 text-lg">July 2024 – Current</div>
                                         <div class="flex items-center space-x-2 mt-1">
@@ -262,16 +277,19 @@
             </section>
 
             <!-- Portfolio Section -->
-            <section id="portfolio" class="w-full bg-white rounded-2xl p-6 sm:p-12 mb-20 shadow-2xl animate-fade-in-up">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-blue-600 mb-8">My Work</h2>
+            <section id="portfolio" class="w-full bg-white rounded-2xl p-6 sm:p-12 mt-20 mb-20 shadow-2xl animate-fade-in-up">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-blue-600 mb-4">My Work</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Most of the projects I have been involved in are protected by Non-Disclosure Agreements (NDAs) and are not my property, so I am unable to share them. Nevertheless, I have included some personal projects from the early stages of my career and publications that I have contributed to.
+                </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Portfolio Project Card 1 -->
                     <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center text-center shadow-lg transform hover:scale-105 transition-transform duration-300">
                         <!-- Project Image -->
-                        <img src="https://placehold.co/400x250/e2e8f0/2d3748/png?text=Project+1" alt="Project 1 thumbnail" class="w-full h-auto rounded-lg mb-4 object-cover">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Project Title One</h3>
+                        <img src="Project1.jpg" alt="Project 1 thumbnail" class="w-full h-auto rounded-lg mb-4 object-cover">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Sales & Customer Insights Dashboard for Strategic Decision-Making</h3>
                         <p class="text-gray-600 mb-4">A brief description of your project. Mention the technologies used or the problem it solved.</p>
-                        <a href="https://example.com/project1" class="text-blue-500 hover:text-blue-700 font-medium transition-colors duration-300" target="_blank">View Project &rarr;</a>
+                        <a href="https://www.upwork.com/freelancers/~01ad4d3aa23bcd8b92?p=1947660068001333248" class="text-blue-500 hover:text-blue-700 font-medium transition-colors duration-300" target="_blank">View Project on Upwork &rarr;</a>
                     </div>
 
                     <!-- Portfolio Project Card 2 -->
