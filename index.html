@@ -36,6 +36,53 @@
             font-weight: bold;
             color: #1a202c;
         }
+
+        /* Video background container */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 1.5rem; /* Matches the parent container's rounded-2xl */
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            /* Fades the video to match the background color */
+            filter: brightness(0.7) opacity(0.5); 
+        }
+
+        /* Styles for the 3D card deck effect */
+        .card-container {
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Adjust size as needed */
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 1rem;
+            transform-origin: center bottom;
+            transition: transform 0.5s ease-in-out, z-index 0s 0.5s;
+        }
+        .card.is-active {
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="flex flex-col items-center relative min-h-screen">
@@ -69,10 +116,13 @@
             <!-- About Me Section -->
             <section id="about" class="w-full bg-white rounded-2xl p-6 sm:p-12 mb-12 shadow-2xl animate-fade-in-up">
                 <div class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12">
-                    <!-- Profile Image -->
-                    <div class="flex-shrink-0">
-                        <!-- Placeholder image with alt text. Replace this with your actual photo. -->
-                        <img src="https://placehold.co/200x200/e2e8f0/2d3748/png?text=Your+Photo" alt="A professional headshot of me" class="rounded-full w-48 h-48 sm:w-60 sm:h-60 object-cover border-4 border-gray-200 shadow-xl">
+                    <!-- 3D Photo Stack -->
+                    <div class="card-container">
+                        <img src="photo1.jpg" alt="Photo 1" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 5; transform: rotate(0deg) translateZ(0);">
+                        <img src="photo2.jpg" alt="Photo 2" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 4; transform: rotate(-3deg) translateZ(-5px);">
+                        <img src="photo3.jpg" alt="Photo 3" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 3; transform: rotate(3deg) translateZ(-10px);">
+                        <img src="photo4.jpg" alt="Photo 4" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 2; transform: rotate(-5deg) translateZ(-15px);">
+                        <img src="photo5.jpg" alt="Photo 5" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 1; transform: rotate(5deg) translateZ(-20px);">
                     </div>
                     <!-- Bio and Intro -->
                     <div class="text-center md:text-left">
@@ -193,6 +243,66 @@
 
         sections.forEach(section => {
             observer.observe(section);
+        });
+
+        // Script for the 3D card deck effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.card-container');
+            const cards = Array.from(container.querySelectorAll('.card'));
+            let activeCardIndex = 0;
+
+            // Initial z-index and rotation setup
+            cards.forEach((card, index) => {
+                card.style.zIndex = cards.length - index;
+            });
+
+            const slideCard = (card) => {
+                // Animate the top card to slide down and out
+                card.style.transform = 'translateY(100%) rotate(10deg) scale(0.9)';
+                card.style.opacity = '0';
+
+                // After the animation, reset the card and move it to the bottom of the stack
+                setTimeout(() => {
+                    card.style.transition = 'none'; // Temporarily disable transitions
+                    card.style.transform = 'translateY(0) rotate(5deg) translateZ(-20px)';
+                    card.style.opacity = '1';
+                    card.style.zIndex = 0; // Move to the bottom
+                    
+                    // Re-enable transitions for the next animation
+                    setTimeout(() => {
+                        card.style.transition = 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0s 0.5s';
+                    }, 50);
+
+                }, 500); // Wait for the transition to finish
+            };
+
+            const updateZIndex = () => {
+                cards.forEach((card, index) => {
+                    card.style.zIndex = (index - activeCardIndex + cards.length) % cards.length;
+                });
+            };
+
+            container.addEventListener('mouseenter', () => {
+                container.style.cursor = 'pointer';
+            });
+            
+            container.addEventListener('click', () => {
+                const topCard = cards[activeCardIndex];
+                slideCard(topCard);
+
+                // Update the active card index
+                activeCardIndex = (activeCardIndex + 1) % cards.length;
+                updateZIndex();
+            });
+
+            // Make it work on touch devices
+            container.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const topCard = cards[activeCardIndex];
+                slideCard(topCard);
+                activeCardIndex = (activeCardIndex + 1) % cards.length;
+                updateZIndex();
+            }, { passive: false });
         });
     </script>
 </body>
