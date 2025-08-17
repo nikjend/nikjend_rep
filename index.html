@@ -59,28 +59,6 @@
             object-fit: cover;
         }
 
-        /* Styles for the 3D card deck effect */
-        .card-container {
-            width: 200px;
-            height: 200px;
-            position: relative;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        .card {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 1rem;
-            transform-origin: center bottom;
-            transition: transform 0.5s ease-in-out, z-index 0s 0.5s;
-        }
-        .card.is-active {
-            z-index: 10;
-        }
-
         /* Custom animation for fading in sections */
         .animate-fade-in-up {
             opacity: 0;
@@ -91,6 +69,44 @@
         .animate-fade-in-up.is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Timeline styles */
+        .timeline-item {
+            position: relative;
+        }
+        .timeline-circle {
+            width: 20px;
+            height: 20px;
+            background-color: #3B82F6; /* Tailwind blue */
+            border-radius: 50%;
+            border: 2px solid white;
+            transition: all 0.3s ease-in-out;
+            position: relative; /* To be centered over the line */
+        }
+        .timeline-circle:hover {
+            transform: scale(1.2);
+            background-color: #9B54A4;
+            border-color: #3B82F6;
+        }
+        .timeline-card {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            transform: translateY(10px);
+            z-index: 99; /* Higher z-index to be above all other sections */
+        }
+        .timeline-item:hover .timeline-card {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-card-content {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
@@ -112,12 +128,13 @@
     <div class="relative z-10 w-full min-h-screen flex flex-col items-center justify-between">
     
         <!-- Header and Navigation -->
-        <header class="w-full max-w-7xl flex flex-col sm:flex-row justify-between items-center p-4 sm:p-6 sticky top-0 bg-white bg-opacity-70 backdrop-blur-sm z-50 rounded-b-xl shadow-lg transition-all duration-300">
+        <header class="w-full max-w-7xl flex flex-col sm:flex-row justify-between items-center py-3 sm:py-4 p-4 sticky top-0 bg-white bg-opacity-70 backdrop-blur-sm z-50 rounded-b-xl shadow-lg transition-all duration-300">
             <!-- Site Title or Logo -->
             <h1 class="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">Nikita</h1>
             <!-- Navigation links -->
             <nav class="flex space-x-4 sm:space-x-8">
                 <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-300">About</a>
+                <a href="#timeline" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-300">Timeline</a>
                 <a href="#portfolio" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-300">Portfolio</a>
                 <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-300">Contact</a>
             </nav>
@@ -129,25 +146,116 @@
             <!-- About Me Section -->
             <section id="about" class="w-full bg-white rounded-2xl p-6 sm:p-12 mb-12 shadow-2xl animate-fade-in-up">
                 <div class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12">
-                    <!-- 3D Photo Stack -->
-                    <div class="card-container">
-                        <img src="photo1.jpg" alt="Photo 1" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 5; transform: rotate(0deg) translateZ(0);">
-                        <img src="photo2.jpg" alt="Photo 2" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 4; transform: rotate(-3deg) translateZ(-5px);">
-                        <img src="photo3.jpg" alt="Photo 3" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 3; transform: rotate(3deg) translateZ(-10px);">
-                        <img src="photo4.jpg" alt="Photo 4" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 2; transform: rotate(-5deg) translateZ(-15px);">
-                        <img src="photo5.jpg" alt="Photo 5" class="card rounded-2xl border-4 border-gray-200 shadow-xl" style="z-index: 1; transform: rotate(5deg) translateZ(-20px);">
+                    <!-- Photo -->
+                    <div class="flex-shrink-0">
+                        <img src="photo.jpg" alt="A professional headshot of Nikita" class="rounded-2xl w-48 h-48 sm:w-60 sm:h-60 object-cover border-4 border-gray-200 shadow-xl">
                     </div>
                     <!-- Bio and Intro -->
                     <div class="text-center md:text-left">
                         <h2 class="text-4xl sm:text-5xl font-extrabold text-blue-600 mb-2">Hello, I'm Nikita!</h2>
                         <p class="text-xl font-medium text-gray-600 mb-4">Data Analyst</p>
                         <p class="text-base sm:text-lg leading-relaxed text-gray-700">
-                            I am a passionate and creative individual with over 5 years of experience in **BI Tools**. I currently work at **Emergn** and hold a valid **Microsoft Power BI certificate**. I enjoy
+                            I am a passionate and creative individual with over **5 years** of experience with **BI Tools**. I currently work at **Emergn** and hold a valid **Microsoft Power BI certificate**. I enjoy
                             working on projects that challenge me to learn new things and build innovative solutions.
                             This is a simple portfolio website to showcase my skills and work.
-                            <br><br>
-                            (You can expand on this section with more details about your experience, interests, and goals.)
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline Section -->
+            <section id="timeline" class="w-full rounded-2xl p-6 sm:p-12 mb-12 animate-fade-in-up">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-blue-600 mb-16">My Journey</h2>
+                <div class="flex flex-col sm:flex-row items-center justify-between relative">
+                    <!-- Horizontal line for timeline -->
+                    <div class="absolute inset-x-0 top-1/2 h-2 bg-blue-500 shadow-lg hidden sm:block"></div>
+                    <!-- Timeline Items Wrapper -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between w-full">
+                        
+                        <!-- Timeline Item 1: SSE -->
+                        <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
+                            <div class="relative inline-block">
+                                <div class="timeline-circle"></div>
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                    <div class="timeline-card-content">
+                                        <div class="font-bold text-gray-800 text-lg">August 2019 – June 2022</div>
+                                        <div class="flex items-center space-x-2 mt-1">
+                                            <img src="sse.png" alt="SSE Logo" class="h-6">
+                                            <div class="text-gray-600 font-medium">Stockholm School of Economics in Riga</div>
+                                        </div>
+                                        <div class="text-sm text-gray-500">BACHELOR OF SOCIAL SCIENCES IN ECONOMICS</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2: ERGO -->
+                        <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
+                            <div class="relative inline-block">
+                                <div class="timeline-circle"></div>
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                    <div class="timeline-card-content">
+                                        <div class="font-bold text-gray-800 text-lg">July 2020 – August 2020</div>
+                                        <div class="flex items-center space-x-2 mt-1">
+                                            <img src="ergo.png" alt="ERGO Logo" class="h-6">
+                                            <div class="text-gray-600 font-medium">Internship in ERGO</div>
+                                        </div>
+                                        <div class="text-sm text-gray-500">Transport Department Intern</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 3: Metropolis Riga -->
+                        <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
+                            <div class="relative inline-block">
+                                <div class="timeline-circle"></div>
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                    <div class="timeline-card-content">
+                                        <div class="font-bold text-gray-800 text-lg">June 2021 – August 2023</div>
+                                        <div class="flex items-center space-x-2 mt-1">
+                                            <img src="metropolis.png" alt="Metropolis Riga Logo" class="h-6">
+                                            <div class="text-gray-600 font-medium">METROPOLIS RIGA</div>
+                                        </div>
+                                        <div class="text-sm text-gray-500">DATA ANALYST REAL ESTATE BROKERAGE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 4: Scandic Fusion -->
+                        <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
+                            <div class="relative inline-block">
+                                <div class="timeline-circle"></div>
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                    <div class="timeline-card-content">
+                                        <div class="font-bold text-gray-800 text-lg">June 2022 – July 2024</div>
+                                        <div class="flex items-center space-x-2 mt-1">
+                                            <img src="scandic.png" alt="Scandic Fusion Logo" class="h-6">
+                                            <div class="text-gray-600 font-medium">SCANDIC FUSION</div>
+                                        </div>
+                                        <div class="text-sm text-gray-500">BUSINESS INTELLIGENCE ANALYST</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 5: Emergn -->
+                        <div class="timeline-item flex-1 text-center mb-12 sm:mb-0 flex justify-center items-center">
+                            <div class="relative inline-block">
+                                <div class="timeline-circle"></div>
+                                <div class="timeline-card absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64">
+                                    <div class="timeline-card-content">
+                                        <div class="font-bold text-gray-800 text-lg">July 2024 – CURRENT</div>
+                                        <div class="flex items-center space-x-2 mt-1">
+                                            <img src="emergn.png" alt="Emergn Logo" class="h-6">
+                                            <div class="text-gray-600 font-medium">EMERGN</div>
+                                        </div>
+                                        <div class="text-sm text-gray-500">DATA ANALYST</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -192,9 +300,13 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.465-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.652 1.652.241 2.874.118 3.176.771.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.197-6.095 8.197-11.389 0-6.627-5.373-12-12-12z"/></svg>
                         <span class="text-lg">GitHub</span>
                     </a>
-                    <a href="mailto:your.email@example.com" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
+                    <a href="mailto:nlendovickis@gmail.com" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M24 21h-24v-18h24v18zm-22-16.143v14.143h20v-14.143l-10 6.666-10-6.666zm20-1.857h-20c-1.104 0-2 .896-2 2v14c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-14c0-1.104-.896-2-2-2z"/></svg>
-                        <span class="text-lg">Email</span>
+                        <span class="text-lg">nlendovickis@gmail.com</span>
+                    </a>
+                    <a href="tel:+37127465757" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.873c-.158-.309-.379-.56-.665-.742l-2.529-1.517c-2.073-1.244-4.577-1.244-6.65 0l-2.529 1.517c-.286.182-.507.433-.665.742l-3.521 6.873c-.227.443-.197.97.081 1.385l.176.262c.269.414.654.673 1.082.753l1.839.362c.451.089.87-.061 1.218-.396l.89-.887c.189-.189.44-.294.707-.294h4c.267 0 .518.105.707.294l.89.887c.348.335.767.485 1.218.396l1.839-.362c.428-.08.813-.339 1.082-.753l.176-.262c.278-.415.308-.942.081-1.385zm-4.707-.48l-1.414-2.766c-.198-.387-.492-.693-.842-.907-.35-.214-.73-.319-1.125-.319h-2.909c-.394 0-.775.105-1.125.319-.35.214-.644.52-.842.907l-1.414 2.766-.525-.262c-.172-.086-.337-.126-.492-.126l-1.839-.362c-.155-.03-.298-.105-.418-.225l-.265-.265c-.12-.12-.195-.263-.225-.418l-1.524-2.975c-.097-.19-.145-.407-.145-.634 0-.227.048-.444.145-.634l.265-.515c.14-.27.327-.49.554-.652l2.67-1.602c.433-.26.892-.416 1.371-.416h2.909c.48 0 .938.156 1.371.416l2.67 1.602c.227.162.414.382.554.652l.265.515c.097.19.145.407.145.634 0 .227-.048.444-.145.634l-1.524 2.975-.525.262z"/></svg>
+                        <span class="text-lg">+(371) 27465757</span>
                     </a>
                 </div>
             </section>
@@ -255,66 +367,6 @@
 
         sections.forEach(section => {
             observer.observe(section);
-        });
-
-        // Script for the 3D card deck effect
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.querySelector('.card-container');
-            const cards = Array.from(container.querySelectorAll('.card'));
-            let activeCardIndex = 0;
-
-            // Initial z-index and rotation setup
-            cards.forEach((card, index) => {
-                card.style.zIndex = cards.length - index;
-            });
-
-            const slideCard = (card) => {
-                // Animate the top card to slide down and out
-                card.style.transform = 'translateY(100%) rotate(10deg) scale(0.9)';
-                card.style.opacity = '0';
-
-                // After the animation, reset the card and move it to the bottom of the stack
-                setTimeout(() => {
-                    card.style.transition = 'none'; // Temporarily disable transitions
-                    card.style.transform = 'translateY(0) rotate(5deg) translateZ(-20px)';
-                    card.style.opacity = '1';
-                    card.style.zIndex = 0; // Move to the bottom
-                    
-                    // Re-enable transitions for the next animation
-                    setTimeout(() => {
-                        card.style.transition = 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0s 0.5s';
-                    }, 50);
-
-                }, 500); // Wait for the transition to finish
-            };
-
-            const updateZIndex = () => {
-                cards.forEach((card, index) => {
-                    card.style.zIndex = (index - activeCardIndex + cards.length) % cards.length;
-                });
-            };
-
-            container.addEventListener('mouseenter', () => {
-                container.style.cursor = 'pointer';
-            });
-            
-            container.addEventListener('click', () => {
-                const topCard = cards[activeCardIndex];
-                slideCard(topCard);
-
-                // Update the active card index
-                activeCardIndex = (activeCardIndex + 1) % cards.length;
-                updateZIndex();
-            });
-
-            // Make it work on touch devices
-            container.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                const topCard = cards[activeCardIndex];
-                slideCard(topCard);
-                activeCardIndex = (activeCardIndex + 1) % cards.length;
-                updateZIndex();
-            }, { passive: false });
         });
 
         // Background video logic
