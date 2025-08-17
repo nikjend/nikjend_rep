@@ -110,7 +110,7 @@
             border-radius: 0.75rem;
             padding: 1rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            width: 32rem; /* Made wider */
+            width: 24rem;
         }
 
         /* Shiny animation for header */
@@ -126,7 +126,7 @@
                 background-position: 200% 0;
             }
         }
-
+        
     </style>
 </head>
 <body class="flex flex-col items-center relative min-h-screen">
@@ -147,9 +147,10 @@
     <div class="relative z-10 w-full min-h-screen flex flex-col items-center justify-between">
     
         <!-- Header and Navigation -->
-        <header class="w-full max-w-7xl flex flex-col sm:flex-row justify-between items-center py-1 sm:py-1 p-4 sticky top-0 bg-white z-50 rounded-b-xl shadow-lg transition-all duration-300 shiny">
+        <header class="w-full max-w-7xl flex flex-col items-center p-2 sm:p-2 sticky top-0 bg-white z-50 rounded-b-xl shadow-lg transition-all duration-300 shiny">
             <!-- Site Title or Logo -->
-            <h1 class="text-2xl text-gray-800 mb-2 sm:mb-0">Nikita Jendovickis Portfolio Page</h1>
+            <h1 class="text-2xl text-gray-800 tracking-wider mb-1 sm:mb-0 uppercase">Nikita Jendovickis</h1>
+            <p class="text-sm text-gray-500 tracking-widest uppercase mb-4 sm:mb-0">Portfolio Page</p>
             <!-- Navigation links -->
             <nav class="flex space-x-4 sm:space-x-8">
                 <a href="#about" class="nav-link text-gray-800 hover:text-gray-600 transition-colors duration-300">About</a>
