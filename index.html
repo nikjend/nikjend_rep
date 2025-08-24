@@ -108,22 +108,15 @@
             width: 24rem;
         }
 
-        /* Shiny animation for header */
-        .shiny {
-            background: linear-gradient(120deg, transparent 30%, rgba(200, 200, 200, 0.5) 50%, transparent 70%);
-            background-size: 200% 100%;
-            background-position: -200% 0;
-            animation: shiny-effect 3s infinite linear;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: #3B82F6; /* Use blue for the text color */
-            color: transparent;
+        /* Header title styles */
+        .header-title-font {
+            font-family: 'Agata', serif;
+            font-weight: 700; /* Bold font weight for Agata */
         }
 
-        @keyframes shiny-effect {
-            to {
-                background-position: 200% 0;
-            }
+        /* Hover effect for nav links */
+        .nav-link:hover {
+            color: #3B82F6;
         }
         
     </style>
@@ -152,13 +145,13 @@
         <!-- Header and Navigation -->
         <header class="w-full max-w-7xl flex flex-col items-center p-4 sm:p-4 bg-transparent z-50 rounded-b-xl transition-all duration-300">
             <!-- Site Title or Logo -->
-            <h1 class="header-title-font text-3xl text-gray-800 tracking-wide mb-1 shiny" style="font-family: 'Agata', serif; font-weight: 400;">Nikita Jendovickis</h1>
+            <h1 class="header-title-font text-3xl sm:text-4xl text-[#9B54A4] tracking-wider font-bold mb-4">Nikita Jendovickis</h1>
             <!-- Navigation links -->
             <nav class="flex space-x-6 sm:space-x-12 text-lg font-medium">
-                <a href="#about" class="nav-link text-gray-800 hover:text-gray-600 transition-colors duration-300">About</a>
-                <a href="#timeline" class="nav-link text-gray-800 hover:text-gray-600 transition-colors duration-300">Timeline</a>
-                <a href="#portfolio" class="nav-link text-gray-800 hover:text-gray-600 transition-colors duration-300">Portfolio</a>
-                <a href="#contact" class="nav-link text-gray-800 hover:text-gray-600 transition-colors duration-300">Contact</a>
+                <a href="#about" class="nav-link text-gray-800 hover:text-[#3B82F6] transition-colors duration-300">About</a>
+                <a href="#timeline" class="nav-link text-gray-800 hover:text-[#3B82F6] transition-colors duration-300">Timeline</a>
+                <a href="#portfolio" class="nav-link text-gray-800 hover:text-[#3B82F6] transition-colors duration-300">Portfolio</a>
+                <a href="#contact" class="nav-link text-gray-800 hover:text-[#3B82F6] transition-colors duration-300">Contact</a>
             </nav>
         </header>
 
@@ -335,10 +328,6 @@
                     <a href="https://www.linkedin.com/in/nikita-jendovickis-6033571a4/" target="_blank" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.762s.784-1.762 1.75-1.762 1.75.79 1.75 1.762-.783 1.762-1.75 1.762zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         <span class="text-lg">LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/yourprofile" target="_blank" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.465-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.-399 3.003-.404 1.02.005 2.046.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.652 1.652.241 2.874.118 3.176.771.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.197-6.095 8.197-11.389 0-6.627-5.373-12-12-12z"/></svg>
-                        <span class="text-lg">GitHub</span>
                     </a>
                     <a href="mailto:nlendovickis@gmail.com" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M24 21h-24v-18h24v18zm-22-16.143v14.143h20v-14.143l-10 6.666-10-6.666zm20-1.857h-20c-1.104 0-2 .896-2 2v14c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-14c0-1.104-.896-2-2-2z"/></svg>
