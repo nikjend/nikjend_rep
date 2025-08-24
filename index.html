@@ -107,13 +107,29 @@
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             width: 24rem;
         }
-        
+
+        /* Header title styles */
+        .header-title-font {
+            font-family: 'Agata', serif;
+            font-weight: 700;
+            color: #3B82F6; /* Use blue for the text color */
+            text-shadow:
+                -1px -1px 0 white,
+                1px -1px 0 white,
+                -1px 1px 0 white,
+                1px 1px 0 white;
+        }
+
         /* Hover effect for nav links */
         .nav-link:hover {
             color: #3B82F6;
         }
         
     </style>
+    <!-- Added a new font link from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agata&display=swap" rel="stylesheet">
 </head>
 <body class="flex flex-col items-center relative min-h-screen">
     
@@ -133,7 +149,7 @@
     <div class="relative z-10 w-full min-h-screen flex flex-col items-center justify-between">
     
         <!-- Header and Navigation -->
-        <header class="w-full max-w-7xl flex flex-col items-center p-4 sm:p-4 bg-transparent z-50 transition-all duration-300">
+        <header class="w-full max-w-7xl flex flex-col items-center p-4 sm:p-4 bg-transparent z-50 rounded-b-xl transition-all duration-300">
             <!-- Site Title or Logo -->
             <h1 class="font-bold text-white text-4xl sm:text-5xl tracking-widest mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Nikita Jendovickis</h1>
             <!-- Navigation links -->
@@ -319,9 +335,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.762s.784-1.762 1.75-1.762 1.75.79 1.75 1.762-.783 1.762-1.75 1.762zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         <span class="text-lg">LinkedIn</span>
                     </a>
-                    <a href="mailto:nlendovickis@gmail.com" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
+                    <a href="mailto:njendovickis@gmail.com" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M24 21h-24v-18h24v18zm-22-16.143v14.143h20v-14.143l-10 6.666-10-6.666zm20-1.857h-20c-1.104 0-2 .896-2 2v14c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-14c0-1.104-.896-2-2-2z"/></svg>
-                        <span class="text-lg">nlendovickis@gmail.com</span>
+                        <span class="text-lg">njendovickis@gmail.com</span>
                     </a>
                     <a href="tel:+37127465757" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.873c-.158-.309-.379-.56-.665-.742l-2.529-1.517c-2.073-1.244-4.577-1.244-6.65 0l-2.529 1.517c-.286.182-.507.433-.665.742l-3.521 6.873c-.227.443-.197.97.081 1.385l.176.262c.269.414.654.673 1.082.753l1.839.362c.451.089.87-.061 1.218-.396l.89-.887c.189-.189.44-.294.707-.294h4c.267 0 .518.105.707.294l.89.887c.348.335.767.485 1.218.396l1.839-.362c.428-.08.813-.339 1.082-.753l.176-.262c.278-.415.308-.942.081-1.385zm-4.707-.48l-1.414-2.766c-.198-.387-.492-.693-.842-.907-.35-.214-.73-.319-1.125-.319h-2.909c-.394 0-.775.105-1.125.319-.35.214-.644.52-.842.907l-1.414 2.766-.525-.262c-.172-.086-.337-.126-.492-.126l-1.839-.362c-.155-.03-.298-.105-.418-.225l-.265-.265c-.12-.12-.195-.263-.225-.418l-1.524-2.975c-.097-.19-.145-.407-.145-.634 0-.227.048-.444.145-.634l.265-.515c.14-.27.327-.49.554-.652l2.67-1.602c.433-.26.892-.416 1.371-.416h2.909c.48 0 .938.156 1.371.416l2.67 1.602c.227.162.414.382.554.652l.265.515c.097.19.145.407.145.634 0 .227-.048.444-.145.634l-1.524 2.975-.525.262z"/></svg>
@@ -364,8 +380,8 @@
         }, 2000); // 2-second delay
 
         // Highlight active navigation link on scroll
-        const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
